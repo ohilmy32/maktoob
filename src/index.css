@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Neue Plak Extended';
+  src: url('./assets/fonts/Neue Plak Extended Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Airbnb Cereal';
+  src: url('./assets/AirbnbCereal_W_Bk.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-airbnb {
+  font-family: 'Airbnb Cereal', sans-serif;
+}
+
+@font-face {
+  font-family: 'Airbnb Cereal Black';
+  src: url('./assets/AirbnbCereal_W_Blk.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-airbnb-black {
+  font-family: 'Airbnb Cereal Black', sans-serif;
+}
+
+:root {
+  /* New Color Palette Mapping */
+  /* Magenta: #bd216d, Orange: #f56131, Grey: #d3d3d0, Yellow: #ffe606, Black: #2a2b28 */
+
+  --color-bg: #d3d3d0;
+  /* Grey as main background? Or Yellow? using Grey for neutrality */
+  --color-paper: #f9f9f9;
+  /* Keeping a paper-like white/off-white for cards, distinct from main bg */
+  --color-ink: #2a2b28;
+  /* Black */
+  --color-red: #bd216d;
+  /* Magenta replaces Red */
+  --color-gold: #f56131;
+  /* Orange replaces Gold, can also use Yellow #ffe606 for highlights */
+  --color-yellow: #ffe606;
+  /* Added Yellow */
+  --color-tape: rgba(255, 230, 6, 0.4);
+  /* Yellow tape? */
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: 'Neue Plak Extended', sans-serif;
+  overflow-x: hidden;
+  /* Optional: retain noise texture if desired, else remove */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3,
+h4,
+.serif,
+.script-font {
+  font-family: 'Neue Plak Extended', sans-serif;
+  /* Unifying font as requested */
+}
+
+.arabic {
+  font-family: 'Amiri', serif;
+}
+
+/* Retaining legacy classes for compatibility during port */
+.paper-shadow {
+  box-shadow: 3px 4px 0px rgba(42, 43, 40, 0.2),
+    6px 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tape {
+  position: absolute;
+  background-color: var(--color-tape);
+  height: 30px;
+  width: 90px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  z-index: 20;
+  border-left: 2px dashed rgba(255, 255, 255, 0.2);
+  border-right: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+.tape-corner {
+  position: absolute;
+  background-color: var(--color-tape);
+  height: 25px;
+  width: 80px;
+  top: -10px;
+  left: -20px;
+  transform: rotate(-35deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+
+.lined-paper {
+  background-color: var(--color-paper);
+  background-image: repeating-linear-gradient(transparent, transparent 27px, #A4B0BE 28px);
+  background-attachment: local;
+}
+
+.stamp-btn {
+  background: var(--color-red);
+  color: #fff;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.torn-top {
+  clip-path: polygon(0% 6px, 2% 0px, 4% 6px, 6% 0px, 8% 6px, 10% 0px, 12% 6px, 14% 0px, 16% 6px, 18% 0px, 20% 6px, 22% 0px, 24% 6px, 26% 0px, 28% 6px, 30% 0px, 32% 6px, 34% 0px, 36% 6px, 38% 0px, 40% 6px, 42% 0px, 44% 6px, 46% 0px, 48% 6px, 50% 0px, 52% 6px, 54% 0px, 56% 6px, 58% 0px, 60% 6px, 62% 0px, 64% 6px, 66% 0px, 68% 6px, 70% 0px, 72% 6px, 74% 0px, 76% 6px, 78% 0px, 80% 6px, 82% 0px, 84% 6px, 86% 0px, 88% 6px, 90% 0px, 92% 6px, 94% 0px, 96% 6px, 98% 0px, 100% 6px, 100% 100%, 0% 100%);
+}
+
+.sawtooth-card {
+  /* Solid Color Background */
+  background-color: #e7bd3f;
+  /* User requested color */
+
+  /* Needed for the drop shadow to work on the masked shape */
+  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.25));
+
+  /* Sawtooth Mask Logic */
+  --s: 20px;
+  /* Tooth size */
+  mask:
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top/var(--s) calc(var(--s)/2) repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/var(--s) calc(var(--s)/2) repeat-x,
+    conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) left/calc(var(--s)/2) var(--s) repeat-y,
+    conic-gradient(from -135deg at right, #0000, #000 1deg 89deg, #0000 90deg) right/calc(var(--s)/2) var(--s) repeat-y,
+    linear-gradient(#000, #000) center/calc(100% - var(--s)) calc(100% - var(--s)) no-repeat;
+  -webkit-mask:
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top/var(--s) calc(var(--s)/2) repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/var(--s) calc(var(--s)/2) repeat-x,
+    conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) left/calc(var(--s)/2) var(--s) repeat-y,
+    conic-gradient(from -135deg at right, #0000, #000 1deg 89deg, #0000 90deg) right/calc(var(--s)/2) var(--s) repeat-y,
+    linear-gradient(#000, #000) center/calc(100% - var(--s)) calc(100% - var(--s)) no-repeat;
+  mask-composite: add;
+  -webkit-mask-composite: source-over;
+  /* fallback */
+
+  padding: 3rem;
+  /* Safe area for text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Removed pseudo-element as it's no longer needed for the solid fill */
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-red);
+  border: 2px solid var(--color-bg);
+  border-radius: 5px;
+}
+
+.phone-frame {
+  border: 6px solid #2d2d2d;
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.25);
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 20px;
+  background: #2d2d2d;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 10;
+}
+
+.star {
+  position: absolute;
+  color: var(--color-gold);
+  font-size: 24px;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 2px rgba(245, 97, 49, 0.5));
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+  }
+}
+
+.paper-clip-svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 30;
+  filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.2));
+}
+
+.tab-content-transition {
+  transition: opacity 0.2s ease-in-out;
+}
